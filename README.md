@@ -1,6 +1,6 @@
 php sql installation:
 
-1.  Download .exe file on this site -  https://github.com/abbodi1406/vcredist
+1.  Run .exe file on this site -  https://github.com/abbodi1406/vcredist
 2. https://youtu.be/bG_PMkHuRao?feature=shared
 3. https://www.youtube.com/watch?v=2pI_DZISxSQ&ab_channel=Engineering%27sProjectplan%E2%84%A2
 
