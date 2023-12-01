@@ -26,6 +26,19 @@
         }
     }
     else {
+      $fetchBookCount = "SELECT available_copy FROM book WHERE bookid = '$book_id' ";
+      $fetchCountResult = $con->query($fetchBookCount);
+      $bookCount=0;
+      if($fetchCountResult->num_rows > 0){
+        $fetchBookCountRow = $fetchCountResult->fetch_assoc();
+        $bookCount = $fetchBookCountRow['available_copy'];
+  
+        if($bookCount <= 0) {
+          echo "<script>alert('Currently book copy is not available !');</script>";
+          echo "<script> window.location.href = '../issue_books.php'; </script>";
+          return;
+        }
+      }
         // Before Issuing Book, check whether the student already have that book or not.
         $book_check_query = "SELECT * FROM `issued_book` WHERE book_id = '$book_id' AND `student_prn` = '$stud_prn' AND `status` = 'Issued' ";
         $book_check_result = $con->query($book_check_query);
@@ -61,7 +74,7 @@
     // Fetch available copies of book !
     $fetchBookCount = "SELECT available_copy FROM book WHERE bookid = '$book_id' ";
     $fetchCountResult = $con->query($fetchBookCount);
-
+    $bookCount=0;
     if($fetchCountResult->num_rows > 0){
       $fetchBookCountRow = $fetchCountResult->fetch_assoc();
       $bookCount = $fetchBookCountRow['available_copy'];
@@ -85,7 +98,6 @@
 
     // Decrement the count of available book from books table
     $updateBookCountQuery = "UPDATE `book` SET `available_copy`='$bookCount' WHERE `bookid`=$book_id" ;
-    
      //firing the $query
      $res = mysqli_query($con,$insertquery);
      // Updating the new book count of available books in books table
