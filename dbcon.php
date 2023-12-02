@@ -3,9 +3,9 @@
     $server = "localhost";
     $user = "root";
     $password = "" ;
-    $db = "northdxx_dms_project" ;
+    $db = "library" ;
 
-    $con = mysqli_connect($server,$user,$password,$db,3306);
+    $con = mysqli_connect($server,$user,$password,$db,3300);
 
     if(!$con){
       ?>
